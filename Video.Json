@@ -1,0 +1,16 @@
+[
+  {
+    "id": "city",
+    "title": "City Timelapse",
+    "category": "Urban",
+    "thumbnail": "thumbnails/city.jpg",
+    "video": "videos/city.mp4"
+  },
+  {
+    "id": "nature",
+    "title": "Nature Walk",
+    "category": "Nature",
+    "thumbnail": "thumbnails/nature.jpg",
+    "video": "videos/nature.mp4"
+  }
+]
