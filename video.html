@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Video</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="videoContainer">
+    <a href="index.html">← Back</a>
+    <div id="content"></div>
+  </div>
+
+  <script>
+    function getQueryParam(name) {
+      const params = new URLSearchParams(location.search);
+      return params.get(name);
+    }
+
+    const id = getQueryParam('id');
+    if (!id) {
+      document.getElementById('content').innerText = 'No video id provided.';
+    } else {
+      fetch('./Video.Json')
+        .then(r => r.json())
+        .then(videos => {
+          const v = videos.find(x => String(x.id) === String(id));
+          const container = document.getElementById('content');
+          if (!v) {
+            container.innerText = 'Video not found.';
+            return;
+          }
+          container.innerHTML = `
+            <h1>${v.title}</h1>
+            <video controls width="720" src="${v.src}"></video>
+            <p>${v.description || ''}</p>
+          `;
+        })
+        .catch(err => {
+          document.getElementById('content').innerText = 'Failed to load videos JSON.';
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
